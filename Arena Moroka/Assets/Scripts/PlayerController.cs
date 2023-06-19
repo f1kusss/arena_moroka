@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [Header("Скорость и сила прыжка")]
-    public float moveSpeed = 5f;
-    public float jumpForce = 5f;
+    [Header("Настройки персонажа")]
+    public float moveSpeed;
+    public float jumpForce;
 
     private Rigidbody rb;
     private Camera mainCamera;

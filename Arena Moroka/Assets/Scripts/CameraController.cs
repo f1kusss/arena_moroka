@@ -1,19 +1,27 @@
 using UnityEngine;
 
-public class СameraController : MonoBehaviour
+public class CameraController : MonoBehaviour
 {
     [Header("Чувствительность мыши")]
-    public float mouseSensitivity = 2f;
+    public float mouseSensitivity;
 
     [Header("Привязка игрока")]
-    public Transform Player;
+    public Transform player;
+
+    [Header("Ограничение вертикального обзора")]
+    public float verticalAngleLimit;
 
     private float mouseX;
     private float mouseY;
-    
+    private float rotationX = 0f;
+
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+
+        // Установка начального взгляда камеры
+        transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
+
     }
 
     private void Update()
@@ -21,7 +29,13 @@ public class СameraController : MonoBehaviour
         mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
-        Player.Rotate(mouseX * new Vector3(0, 1, 0));
-        transform.Rotate(-mouseY * new Vector3(1, 0, 0));
+        // Вращение игрока по горизонтали
+        player.Rotate(Vector3.up * mouseX);
+
+        // Вращение камеры по вертикали с ограничением
+        rotationX -= mouseY;
+        rotationX = Mathf.Clamp(rotationX, -verticalAngleLimit, verticalAngleLimit);
+
+        transform.localRotation = Quaternion.Euler(rotationX, 0f, 0f);
     }
 }
