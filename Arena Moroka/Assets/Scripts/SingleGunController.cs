@@ -28,6 +28,8 @@ public class SingleGunController : MonoBehaviour
 
     private void Start()
     {
+        transform.Rotate(-90, -180, 0);
+
         // Получение компонента AudioSource
         audioSource = GetComponent<AudioSource>();
         currentAmmo = magazineSize; // Инициализация количества патронов
