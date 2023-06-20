@@ -25,6 +25,10 @@ public class GunSwitch : MonoBehaviour
         {
             currentWeaponIndex = 1;
         }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            currentWeaponIndex = 2;
+        }
 
         // Если выбранное оружие изменилось, переключаем его
         if (currentWeaponIndex != previousWeaponIndex)

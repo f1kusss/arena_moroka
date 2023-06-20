@@ -15,11 +15,16 @@ public class AutoGunController : MonoBehaviour
     public GameObject groundHitEffectPrefab;
     public float groundHitEffectDuration;
 
+    [Header("Эффект попадания по ящеру")]
+    public GameObject lizzardHitEffectPrefab;
+    public float lizzardHitEffectDuration;
+
     [Header("Настройки оружия")]
     public float fireRange;
     public float fireRate; 
     public int magazineSize;
     public float reloadTime;
+    public float damage;
 
     private AudioSource audioSource;
     private float lastFireTime;
@@ -72,8 +77,17 @@ public class AutoGunController : MonoBehaviour
         {
             Debug.Log("Попадание в объект: " + hit.collider.name);
 
-            GameObject hitEffect = Instantiate(groundHitEffectPrefab, hit.point, Quaternion.LookRotation(hit.normal));
-            Destroy(hitEffect, groundHitEffectDuration);
+            if (hit.collider.tag == "Ground")
+            {
+                GameObject hitEffect = Instantiate(groundHitEffectPrefab, hit.point, Quaternion.LookRotation(hit.normal));
+                Destroy(hitEffect, groundHitEffectDuration);
+            }
+
+            if (hit.collider.tag == "Lizzard")
+            {
+                GameObject hitEffect = Instantiate(lizzardHitEffectPrefab, hit.point, Quaternion.LookRotation(hit.normal));
+                Destroy(hitEffect, lizzardHitEffectDuration);
+            }
         }
         else
         {
