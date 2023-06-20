@@ -2,21 +2,23 @@ using UnityEngine;
 
 public class MeleeWeaponController : MonoBehaviour
 {
-    [Header("Привязка камеры")]
+    [Header("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ")]
     public Camera mainCamera;
 
-    [Header("Эффект попадания по земле")]
+    [Header("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ")]
     public GameObject groundHitEffectPrefab;
     public float groundHitEffectDuration;
 
-    [Header("Эффект попадания по ящеру")]
+    [Header("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ")]
     public GameObject lizzardHitEffectPrefab;
     public float lizzardHitEffectDuration;
 
-    [Header("Настройки оружия")]
+    [Header("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ")]
     public float fireRange;
+    private bool canDamage = false;
 
     private Animator anim;
+    
     private bool isAnimating = false;
 
     void Start()
@@ -41,12 +43,24 @@ public class MeleeWeaponController : MonoBehaviour
 
         anim.SetTrigger("Attack");
 
+        Invoke(nameof(AttackDuration), 1.5f);
+
+    }
+
+    private void AlignWeapon()
+    {
+        Vector3 cameraDirection = mainCamera.transform.forward;
+        transform.rotation = Quaternion.LookRotation(cameraDirection);
+    }
+
+    private void RayAttackZone()
+    {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-
+        
         if (Physics.Raycast(ray, out hit, fireRange))
         {
-            Debug.Log("Попадание в объект: " + hit.collider.name);
+            Debug.Log("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ: " + hit.collider.name);
 
             if (hit.collider.CompareTag("Ground"))
             {
@@ -60,19 +74,11 @@ public class MeleeWeaponController : MonoBehaviour
                 Destroy(hitEffect, lizzardHitEffectDuration);
             }
         }
+        
         else
         {
-            Debug.Log("Промах");
+            Debug.Log("пїЅпїЅпїЅпїЅпїЅпїЅ");
         }
-
-        Invoke(nameof(AttackDuration), 1.5f);
-
-    }
-
-    private void AlignWeapon()
-    {
-        Vector3 cameraDirection = mainCamera.transform.forward;
-        transform.rotation = Quaternion.LookRotation(cameraDirection);
     }
 
     private void AttackDuration()
