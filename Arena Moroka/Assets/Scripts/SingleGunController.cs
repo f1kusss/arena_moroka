@@ -15,20 +15,26 @@ public class SingleGunController : MonoBehaviour
     public GameObject groundHitEffectPrefab;
     public float groundHitEffectDuration;
 
+    [Header("Эффект попадания по ящеру")]
+    public GameObject lizzardHitEffectPrefab;
+    public float lizzardHitEffectDuration;
+
     [Header("Настройки оружия")]
     public float fireRange;
     public float fireDelay;
     public int magazineSize; 
-    public float reloadTime; 
+    public float reloadTime;
+    public float damage;
 
     private AudioSource audioSource;
     private float lastFireTime;
     private int currentAmmo;
     private bool isReloading;
+    private Quaternion Rotation;
+    private Quaternion NewRotation;
 
     private void Start()
     {
-        transform.Rotate(-90, -180, 0);
 
         // Получение компонента AudioSource
         audioSource = GetComponent<AudioSource>();
@@ -83,11 +89,18 @@ public class SingleGunController : MonoBehaviour
             // Обработка попадания
             Debug.Log("Попадание в объект: " + hit.collider.name);
 
-            // Создание эффекта попадания
-            GameObject hitEffect = Instantiate(groundHitEffectPrefab, hit.point, Quaternion.LookRotation(hit.normal));
+            if (hit.collider.tag == "Ground")
+            {
+                GameObject hitEffect = Instantiate(groundHitEffectPrefab, hit.point, Quaternion.LookRotation(hit.normal));
+                Destroy(hitEffect, groundHitEffectDuration);
+            }
 
-            // Удаление эффекта попадания через заданное время
-            Destroy(hitEffect, groundHitEffectDuration);
+            if (hit.collider.tag == "Lizzard")
+            {
+                GameObject hitEffect = Instantiate(lizzardHitEffectPrefab, hit.point, Quaternion.LookRotation(hit.normal));
+                Destroy(hitEffect, lizzardHitEffectDuration);
+            }
+
 
             // Продолжайте здесь свою логику обработки попадания
         }
@@ -105,6 +118,8 @@ public class SingleGunController : MonoBehaviour
 
         // Выравнивание оружия с направлением камеры
         transform.rotation = Quaternion.LookRotation(cameraDirection);
+
+        transform.Rotate(-90, -180, 0);
     }
 
     private void StartReload()
