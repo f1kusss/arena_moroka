@@ -32,8 +32,6 @@ public class MeleeWeaponController : MonoBehaviour
         {
             Attack();
         }
-
-        AlignWeapon();
     }
 
 
@@ -45,12 +43,6 @@ public class MeleeWeaponController : MonoBehaviour
 
         Invoke(nameof(AttackDuration), 1.5f);
 
-    }
-
-    private void AlignWeapon()
-    {
-        Vector3 cameraDirection = mainCamera.transform.forward;
-        transform.rotation = Quaternion.LookRotation(cameraDirection);
     }
 
     private void RayAttackZone()

@@ -45,6 +45,7 @@
      <Compile Include="Assets\Scripts\SingleGunController.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
+     <Compile Include="Assets\Scripts\Hammer.cs" />
      <Compile Include="Assets\Scripts\AutoGunController.cs" />
      <None Include="Assets\Polygonal Particles\Assets\Shaders\GradientBackgroundShader.shader" />
     <Reference Include="UnityEngine">

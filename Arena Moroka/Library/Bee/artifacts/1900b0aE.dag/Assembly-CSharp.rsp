@@ -359,6 +359,7 @@
 "Assets/Scripts/AutoGunController.cs"
 "Assets/Scripts/CameraController.cs"
 "Assets/Scripts/GunSwitch.cs"
+"Assets/Scripts/Hammer.cs"
 "Assets/Scripts/MeleeWeaponController.cs"
 "Assets/Scripts/PlayerController.cs"
 "Assets/Scripts/SingleGunController.cs"
