@@ -2,29 +2,29 @@ using UnityEngine;
 
 public class SingleGunController : MonoBehaviour
 {
-    [Header("Привязка камеры")]
+    [Header("Binding camera")]
     public Camera mainCamera;
 
-    [Header("Точка выстрела")]
+    [Header("Fire point")]
     public Transform firePoint;
 
-    [Header("Звук выстрела")]
+    [Header("Shoot sound")]
     public AudioClip shootSound;
 
-    [Header("Эффект попадания по земле")]
+    [Header("Ground shoot effect")]
     public GameObject groundHitEffectPrefab;
     public float groundHitEffectDuration;
 
-    [Header("Эффект попадания по ящеру")]
+    [Header("Lizzard shoot effect")]
     public GameObject lizzardHitEffectPrefab;
     public float lizzardHitEffectDuration;
 
-    [Header("Настройки оружия")]
+    [Header("Gun settings")]
     public float fireRange;
     public float fireDelay;
     public int magazineSize; 
     public float reloadTime;
-    public float damage;
+    public int damage;
 
     private AudioSource audioSource;
     private float lastFireTime;
@@ -87,7 +87,7 @@ public class SingleGunController : MonoBehaviour
         if (Physics.Raycast(ray, out hit, fireRange))
         {
             // Обработка попадания
-            Debug.Log("Попадание в объект: " + hit.collider.name);
+            Debug.Log("Hitting an object: " + hit.collider.name);
 
             if (hit.collider.tag == "Ground")
             {
@@ -97,6 +97,13 @@ public class SingleGunController : MonoBehaviour
 
             if (hit.collider.tag == "Lizzard")
             {
+                LizzardController lizzard = hit.collider.GetComponent<LizzardController>(); // Получаем компонент врага из столкнувшегося объекта
+
+                if (lizzard != null)
+                {
+                    lizzard.TakeDamage(damage); // Наносим урон врагу
+                }
+
                 GameObject hitEffect = Instantiate(lizzardHitEffectPrefab, hit.point, Quaternion.LookRotation(hit.normal));
                 Destroy(hitEffect, lizzardHitEffectDuration);
             }

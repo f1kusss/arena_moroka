@@ -2,23 +2,22 @@ using UnityEngine;
 
 public class MeleeWeaponController : MonoBehaviour
 {
-    [Header("�������� ������")]
+    [Header("Binding camera")]
     public Camera mainCamera;
 
-    [Header("������ ��������� �� �����")]
+    [Header("Ground shoot effect")]
     public GameObject groundHitEffectPrefab;
     public float groundHitEffectDuration;
 
-    [Header("������ ��������� �� �����")]
+    [Header("Lizzard shoot effect")]
     public GameObject lizzardHitEffectPrefab;
     public float lizzardHitEffectDuration;
 
-    [Header("��������� ������")]
+    [Header("Weapon settings")]
     public float fireRange;
-    private bool canDamage = false;
+    public int damage;
 
     private Animator anim;
-    
     private bool isAnimating = false;
 
     void Start()
@@ -52,7 +51,7 @@ public class MeleeWeaponController : MonoBehaviour
         
         if (Physics.Raycast(ray, out hit, fireRange))
         {
-            Debug.Log("��������� � ������: " + hit.collider.name);
+            Debug.Log("Hitting an object: " + hit.collider.name);
 
             if (hit.collider.CompareTag("Ground"))
             {
@@ -62,6 +61,13 @@ public class MeleeWeaponController : MonoBehaviour
 
             if (hit.collider.CompareTag("Lizzard"))
             {
+                LizzardController lizzard = hit.collider.GetComponent<LizzardController>(); // Получаем компонент врага из столкнувшегося объекта
+
+                if (lizzard != null)
+                {
+                    lizzard.TakeDamage(damage); // Наносим урон врагу
+                }
+
                 GameObject hitEffect = Instantiate(lizzardHitEffectPrefab, hit.point, Quaternion.LookRotation(hit.normal));
                 Destroy(hitEffect, lizzardHitEffectDuration);
             }

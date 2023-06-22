@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GunSwitch : MonoBehaviour
 {
-    [Header("Виды оружия")]
+    [Header("Gun type")]
     public GameObject[] weapons; // Массив с оружием
 
     private int currentWeaponIndex = 0;

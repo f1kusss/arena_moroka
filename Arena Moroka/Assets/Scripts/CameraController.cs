@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [Header("Чувствительность мыши")]
+    [Header("Sensivity")]
     public float mouseSensitivity;
 
-    [Header("Привязка игрока")]
+    [Header("Binding player")]
     public Transform player;
 
-    [Header("Ограничение вертикального обзора")]
+    [Header("Vertical angle border")]
     public float verticalAngleLimit;
 
     private float mouseX;

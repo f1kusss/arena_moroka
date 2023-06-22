@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [Header("Настройки персонажа")]
+    [Header("Player settings")]
     public float moveSpeed;
     public float jumpForce;
+    public int health;
+    public int takeDamage;
 
     private Rigidbody rb;
     private Camera mainCamera;
@@ -46,6 +48,22 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isJumping = true;
         }
+
+        if (Input.GetButtonDown("Fire2"))
+        {
+            TakeDamage();
+        }
+    }
+
+    public void TakeDamage()
+    {
+        health -= takeDamage; // Вычитаем урон из здоровья
+
+        if (health < 0)
+            health = 0;
+
+        Debug.Log("Health: " + health);
+
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -56,4 +74,6 @@ public class PlayerController : MonoBehaviour
             isJumping = false;
         }
     }
+
+
 }
