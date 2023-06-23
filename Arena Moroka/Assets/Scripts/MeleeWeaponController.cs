@@ -27,7 +27,7 @@ public class MeleeWeaponController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire1") && !isAnimating)
+        if (Input.GetButtonDown("Fire1") && !isAnimating && GunSwitch.currentWeaponIndex == 0)
         {
             Attack();
         }
@@ -40,7 +40,7 @@ public class MeleeWeaponController : MonoBehaviour
 
         anim.SetTrigger("Attack");
 
-        Invoke(nameof(AttackDuration), 1.5f);
+        Invoke(nameof(AttackDuration), 4.2f);
 
     }
 

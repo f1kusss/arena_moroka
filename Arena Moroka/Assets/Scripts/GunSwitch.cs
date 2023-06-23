@@ -3,20 +3,20 @@ using UnityEngine;
 public class GunSwitch : MonoBehaviour
 {
     [Header("Gun type")]
-    public GameObject[] weapons; // Массив с оружием
+    public GameObject[] weapons; // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-    private int currentWeaponIndex = 0;
+    public static int currentWeaponIndex = 0;
 
     private void Start()
     {
-        SwitchWeapon(currentWeaponIndex); // Устанавливаем начальное оружие
+        SwitchWeapon(currentWeaponIndex); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     }
 
     private void Update()
     {
         int previousWeaponIndex = currentWeaponIndex;
 
-        // Проверяем нажатие клавиш "1" и "2"
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ "1" пїЅ "2"
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             currentWeaponIndex = 0;
@@ -30,7 +30,7 @@ public class GunSwitch : MonoBehaviour
             currentWeaponIndex = 2;
         }
 
-        // Если выбранное оружие изменилось, переключаем его
+        // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
         if (currentWeaponIndex != previousWeaponIndex)
         {
             SwitchWeapon(currentWeaponIndex);
@@ -39,13 +39,13 @@ public class GunSwitch : MonoBehaviour
 
     private void SwitchWeapon(int weaponIndex)
     {
-        // Деактивируем все оружие
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         for (int i = 0; i < weapons.Length; i++)
         {
             weapons[i].SetActive(false);
         }
 
-        // Активируем выбранное оружие
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         weapons[weaponIndex].SetActive(true);
     }
 }
