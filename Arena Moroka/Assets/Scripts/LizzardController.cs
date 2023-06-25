@@ -3,21 +3,33 @@ using UnityEngine;
 public class LizzardController : MonoBehaviour
 {
     [Header("Lizzard settings")]
-    public int health; // Здоровье врага
+    public int health; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+    public GameObject FloatingTextPrefab;
 
     public void TakeDamage(int damage)
     {
-        health -= damage; // Вычитаем урон из здоровья
+        health -= damage; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
+        ShowFloatingText(damage.ToString());
+        
         if (health <= 0)
         {
-            Die(); // Если здоровье опустилось до нуля или ниже, вызываем метод смерти
+            Die(); // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+        }
+    }
+
+    private void ShowFloatingText(string text)
+    {
+        if (FloatingTextPrefab)
+        {
+            var go = Instantiate(FloatingTextPrefab, transform.position, transform.rotation, transform);
+            go.GetComponentInChildren<TMPro.TextMeshPro>().text = text; 
         }
     }
 
     private void Die()
     {
-        // Здесь можно добавить код, выполняющийся при смерти врага
-        Destroy(gameObject); // Уничтожаем объект врага
+        // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+        Destroy(gameObject); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     }
 }
