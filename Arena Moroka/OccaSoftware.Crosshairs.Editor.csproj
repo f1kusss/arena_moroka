@@ -711,11 +711,11 @@
     <Reference Include="UnityEngine.UI">
         <HintPath>D:\Git\arena_moroka\Arena Moroka\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.TestRunner">
-        <HintPath>D:\Git\arena_moroka\Arena Moroka\Library\ScriptAssemblies\UnityEditor.TestRunner.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.TestRunner">
         <HintPath>D:\Git\arena_moroka\Arena Moroka\Library\ScriptAssemblies\UnityEngine.TestRunner.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.TestRunner">
+        <HintPath>D:\Git\arena_moroka\Arena Moroka\Library\ScriptAssemblies\UnityEditor.TestRunner.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
