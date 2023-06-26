@@ -1,48 +1,56 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     [Header("Player settings")]
     public float moveSpeed;
     public float jumpForce;
-    public int health;
     public int takeDamage;
+    public float maxHealth;
+    public float currentHealth;
+    public float healInterval;
 
     private Rigidbody rb;
     private Camera mainCamera;
     private bool isJumping = false;
+    private float timeSinceLastDamage = 0f;
+
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         mainCamera = Camera.main;
+
+        currentHealth = maxHealth;
     }
 
     private void Update()
     {
-        // Получение ввода для передвижения по горизонтали и вертикали
+        timeSinceLastDamage += Time.deltaTime;
+
+        // Если прошло достаточно времени, исцеляем игрока
+        if ((timeSinceLastDamage >= healInterval) && currentHealth < 100)
+        {
+            currentHealth += 0.25f;
+        }
+
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 
-        // Получение направления взгляда камеры
         Vector3 cameraForward = mainCamera.transform.forward;
         Vector3 cameraRight = mainCamera.transform.right;
 
-        // Исключение вертикальной составляющей, чтобы движение оставалось на плоскости
         cameraForward.y = 0f;
         cameraRight.y = 0f;
 
-        // Нормализация направлений
         cameraForward.Normalize();
         cameraRight.Normalize();
 
-        // Рассчет направления движения игрока
         Vector3 movementDirection = (cameraForward * moveVertical + cameraRight * moveHorizontal).normalized;
 
-        // Применение движения к игроку
         rb.velocity = new Vector3(movementDirection.x * moveSpeed, rb.velocity.y, movementDirection.z * moveSpeed);
 
-        // Прыжок при нажатии пробела
         if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
@@ -57,23 +65,21 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage()
     {
-        health -= takeDamage; // Вычитаем урон из здоровья
+        timeSinceLastDamage = 0f;
+        currentHealth -= takeDamage;
 
-        if (health < 0)
-            health = 0;
+        if (currentHealth < 0)
+            currentHealth = 0;
 
-        Debug.Log("Health: " + health);
+        Debug.Log("Health: " + currentHealth);
 
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        // Проверка, когда игрок касается земли для возможности прыжка
         if (collision.gameObject.CompareTag("Ground"))
         {
             isJumping = false;
         }
     }
-
-
 }

@@ -1,4 +1,6 @@
 using UnityEngine;
+using TMPro;
+using System;
 
 public class SingleGunController : MonoBehaviour
 {
@@ -26,9 +28,11 @@ public class SingleGunController : MonoBehaviour
     public float reloadTime;
     public int damage;
 
+    public TextMeshProUGUI ammo;
+    public int currentAmmo = 3;
+
     private AudioSource audioSource;
     private float lastFireTime;
-    private int currentAmmo;
     private bool isReloading;
     private Quaternion Rotation;
     private Quaternion NewRotation;
@@ -57,6 +61,7 @@ public class SingleGunController : MonoBehaviour
             // Уменьшаем количество патронов
             currentAmmo--;
 
+            ammo.text = currentAmmo.ToString();
         }
 
         if (Input.GetKeyDown(KeyCode.R) && currentAmmo < magazineSize)
@@ -151,5 +156,7 @@ public class SingleGunController : MonoBehaviour
 
         isReloading = false;
         currentAmmo = magazineSize;
+
+        ammo.text = currentAmmo.ToString();
     }
 }

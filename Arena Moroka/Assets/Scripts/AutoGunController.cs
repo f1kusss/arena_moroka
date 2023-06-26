@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 
 public class AutoGunController : MonoBehaviour
 {
@@ -26,9 +27,11 @@ public class AutoGunController : MonoBehaviour
     public float reloadTime;
     public int damage;
 
+    public TextMeshProUGUI ammo;
+    public int currentAmmo = 15;
+
     private AudioSource audioSource;
     private float lastFireTime;
-    private int currentAmmo;
     private bool isReloading;
 
     private void Start()
@@ -39,6 +42,7 @@ public class AutoGunController : MonoBehaviour
 
     private void Update()
     {
+
         if (isReloading)
         {
             return;
@@ -51,6 +55,7 @@ public class AutoGunController : MonoBehaviour
 
             currentAmmo--;
 
+            ammo.text = currentAmmo.ToString();
         }
 
         if (Input.GetKeyDown(KeyCode.R) && currentAmmo < magazineSize)
@@ -106,6 +111,8 @@ public class AutoGunController : MonoBehaviour
     {
         Vector3 cameraDirection = mainCamera.transform.forward;
         transform.rotation = Quaternion.LookRotation(cameraDirection);
+
+        transform.Rotate(0, 180, 0);
     }
 
     private void StartReload()
@@ -127,5 +134,7 @@ public class AutoGunController : MonoBehaviour
 
         isReloading = false;
         currentAmmo = magazineSize;
+
+        ammo.text = currentAmmo.ToString();
     }
 }
