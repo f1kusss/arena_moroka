@@ -1,23 +1,23 @@
 Using pre-set license
 Built from '2022.3/staging' branch; Version is '2022.3.2f1 (d74737c6db50) revision 14108471'; Using compiler version '192829333'; Build Type 'Release'
-OS: 'Windows 10  (10.0.19041) 64bit Professional' Language: 'ru' Physical Memory: 16325 MB
+OS: 'Windows 11  (10.0.22621) 64bit Core' Language: 'ru' Physical Memory: 8061 MB
 BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
 
 COMMAND LINE ARGUMENTS:
-C:\Program Files\Unity\Hub\Editor\2022.3.2f1\Editor\Unity.exe
+C:\unity\2022.3.2f1\Editor\Unity.exe
 -adb2
 -batchMode
 -noUpm
 -name
 AssetImportWorker2
 -projectPath
-C:/Pavel/GitHub/arena_moroka/Arena Moroka
+D:/Git/arena_moroka/Arena Moroka
 -logFile
 Logs/AssetImportWorker2.log
 -srvPort
-62420
-Successfully changed project path to: C:/Pavel/GitHub/arena_moroka/Arena Moroka
-C:/Pavel/GitHub/arena_moroka/Arena Moroka
+49912
+Successfully changed project path to: D:/Git/arena_moroka/Arena Moroka
+D:/Git/arena_moroka/Arena Moroka
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
     "memorysetup-bucket-allocator-granularity=16"
     "memorysetup-bucket-allocator-bucket-count=8"
@@ -49,64 +49,64 @@ C:/Pavel/GitHub/arena_moroka/Arena Moroka
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [16300] Host "[IP] 192.168.0.109 [Port] 0 [Flags] 2 [Guid] 75118706 [EditorId] 75118706 [Version] 1048832 [Id] WindowsEditor(7,WIN-M2S8MPK82BA) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+Player connection [11208] Host "[IP] 192.168.1.66 [Port] 0 [Flags] 2 [Guid] 2032836954 [EditorId] 2032836954 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-74MT104) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
 
-Player connection [16300] Host "[IP] 192.168.0.109 [Port] 0 [Flags] 2 [Guid] 75118706 [EditorId] 75118706 [Version] 1048832 [Id] WindowsEditor(7,WIN-M2S8MPK82BA) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [11208] Host "[IP] 192.168.1.66 [Port] 0 [Flags] 2 [Guid] 2032836954 [EditorId] 2032836954 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-74MT104) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
 
-Refreshing native plugins compatible for Editor in 12.80 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 6.93 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2022.3.2f1 (d74737c6db50)
-[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2022.3.2f1/Editor/Data/Resources/UnitySubsystems
-[Subsystems] Discovering subsystems at path C:/Pavel/GitHub/arena_moroka/Arena Moroka/Assets
+[Subsystems] Discovering subsystems at path C:/unity/2022.3.2f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path D:/Git/arena_moroka/Arena Moroka/Assets
 GfxDevice: creating device client; threaded=0; jobified=0
 Direct3D:
     Version:  Direct3D 11.0 [level 11.1]
-    Renderer: NVIDIA GeForce GTX 1660 Ti (ID=0x2182)
+    Renderer: NVIDIA GeForce GTX 1650 (ID=0x1f99)
     Vendor:   NVIDIA
-    VRAM:     5991 MB
-    Driver:   30.0.14.9729
+    VRAM:     3962 MB
+    Driver:   27.21.14.5749
 Initialize mono
-Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2022.3.2f1/Editor/Data/Managed'
-Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2022.3.2f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
-Mono config path = 'C:/Program Files/Unity/Hub/Editor/2022.3.2f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56396
+Mono path[0] = 'C:/unity/2022.3.2f1/Editor/Data/Managed'
+Mono path[1] = 'C:/unity/2022.3.2f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/unity/2022.3.2f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56676
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
-Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.2f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.013652 seconds.
-- Loaded All Assemblies, in  0.461 seconds
+Register platform support module: C:/unity/2022.3.2f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.004805 seconds.
+- Loaded All Assemblies, in  0.489 seconds
 Native extension for WindowsStandalone target not found
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.349 seconds
-Domain Reload Profiling: 808ms
-	BeginReloadAssembly (135ms)
+- Finished resetting the current domain, in  0.548 seconds
+Domain Reload Profiling: 1037ms
+	BeginReloadAssembly (127ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (0ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (1ms)
-	RebuildCommonClasses (44ms)
+		CreateAndSetChildDomain (2ms)
+	RebuildCommonClasses (48ms)
 	RebuildNativeTypeToScriptingClass (15ms)
-	initialDomainReloadingComplete (83ms)
-	LoadAllAssembliesAndSetupDomain (181ms)
-		LoadAssemblies (132ms)
+	initialDomainReloadingComplete (81ms)
+	LoadAllAssembliesAndSetupDomain (216ms)
+		LoadAssemblies (122ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (171ms)
-			TypeCache.Refresh (170ms)
-				TypeCache.ScanAssembly (153ms)
-			ScanForSourceGeneratedMonoScriptInfo (0ms)
+		AnalyzeDomain (208ms)
+			TypeCache.Refresh (207ms)
+				TypeCache.ScanAssembly (187ms)
+			ScanForSourceGeneratedMonoScriptInfo (1ms)
 			ResolveRequiredComponents (1ms)
-	FinalizeReload (350ms)
+	FinalizeReload (549ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (265ms)
+		SetupLoadedEditorAssemblies (440ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (14ms)
-			SetLoadedEditorAssemblies (9ms)
+			InitializePlatformSupportModulesInManaged (11ms)
+			SetLoadedEditorAssemblies (16ms)
 			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (3ms)
-			ProcessInitializeOnLoadAttributes (178ms)
-			ProcessInitializeOnLoadMethodAttributes (62ms)
+			BeforeProcessingInitializeOnLoad (4ms)
+			ProcessInitializeOnLoadAttributes (278ms)
+			ProcessInitializeOnLoadMethodAttributes (130ms)
 			AfterProcessingInitializeOnLoad (0ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
@@ -114,53 +114,53 @@ Domain Reload Profiling: 808ms
 ========================================================================
 Worker process is ready to serve import requests
 Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory doesn't match image C:\Pavel\GitHub\arena_moroka\Arena Moroka\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
-Symbol file LoadedFromMemory doesn't match image C:\Pavel\GitHub\arena_moroka\Arena Moroka\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
-- Loaded All Assemblies, in  1.119 seconds
-Refreshing native plugins compatible for Editor in 4.64 ms, found 3 plugins.
+Symbol file LoadedFromMemory doesn't match image D:\Git\arena_moroka\Arena Moroka\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image D:\Git\arena_moroka\Arena Moroka\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+- Loaded All Assemblies, in  1.179 seconds
+Refreshing native plugins compatible for Editor in 2.65 ms, found 3 plugins.
 Native extension for WindowsStandalone target not found
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.629 seconds
-Domain Reload Profiling: 1744ms
-	BeginReloadAssembly (271ms)
+- Finished resetting the current domain, in  0.810 seconds
+Domain Reload Profiling: 1988ms
+	BeginReloadAssembly (239ms)
 		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (7ms)
+		DisableScriptedObjects (9ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (102ms)
-	RebuildCommonClasses (50ms)
-	RebuildNativeTypeToScriptingClass (13ms)
-	initialDomainReloadingComplete (55ms)
-	LoadAllAssembliesAndSetupDomain (725ms)
-		LoadAssemblies (434ms)
+		CreateAndSetChildDomain (55ms)
+	RebuildCommonClasses (60ms)
+	RebuildNativeTypeToScriptingClass (17ms)
+	initialDomainReloadingComplete (60ms)
+	LoadAllAssembliesAndSetupDomain (801ms)
+		LoadAssemblies (459ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (395ms)
-			TypeCache.Refresh (367ms)
-				TypeCache.ScanAssembly (348ms)
+		AnalyzeDomain (437ms)
+			TypeCache.Refresh (408ms)
+				TypeCache.ScanAssembly (389ms)
 			ScanForSourceGeneratedMonoScriptInfo (22ms)
-			ResolveRequiredComponents (6ms)
-	FinalizeReload (629ms)
+			ResolveRequiredComponents (7ms)
+	FinalizeReload (811ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (444ms)
+		SetupLoadedEditorAssemblies (559ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (8ms)
-			SetLoadedEditorAssemblies (3ms)
+			InitializePlatformSupportModulesInManaged (12ms)
+			SetLoadedEditorAssemblies (6ms)
 			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (74ms)
-			ProcessInitializeOnLoadAttributes (320ms)
-			ProcessInitializeOnLoadMethodAttributes (26ms)
-			AfterProcessingInitializeOnLoad (12ms)
+			BeforeProcessingInitializeOnLoad (77ms)
+			ProcessInitializeOnLoadAttributes (413ms)
+			ProcessInitializeOnLoadMethodAttributes (46ms)
+			AfterProcessingInitializeOnLoad (6ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (9ms)
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.19 seconds
-Refreshing native plugins compatible for Editor in 3.68 ms, found 3 plugins.
+		AwakeInstancesAfterBackupRestoration (10ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.09 seconds
+Refreshing native plugins compatible for Editor in 4.42 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 3166 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 31 unused Assets / (56.5 KB). Loaded Objects now: 3640.
-Memory consumption went from 122.8 MB to 122.7 MB.
-Total: 4.172700 ms (FindLiveObjects: 0.284400 ms CreateObjectMapping: 0.370500 ms MarkObjects: 3.412500 ms  DeleteObjects: 0.104500 ms)
+Unloading 31 unused Assets / (56.3 KB). Loaded Objects now: 3640.
+Memory consumption went from 122.9 MB to 122.9 MB.
+Total: 6.370500 ms (FindLiveObjects: 0.969300 ms CreateObjectMapping: 0.276500 ms MarkObjects: 4.910600 ms  DeleteObjects: 0.210400 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
@@ -175,92 +175,12 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  Time since last request: 73796.048797 seconds.
-  path: Assets/Models/Chain_02.fbx
-  artifactKey: Guid(91f7b227c9bfe5946997e5d07f771d29) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/Chain_02.fbx using Guid(91f7b227c9bfe5946997e5d07f771d29) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1b928bc490d99ee53db880827c217e1d') in 0.667547 seconds
+  Time since last request: 272.107025 seconds.
+  path: Assets/Animations/Liz_base/swipe.fbx
+  artifactKey: Guid(1acc3d46ee7a6f94ab10937157ff7b26) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Liz_base/swipe.fbx using Guid(1acc3d46ee7a6f94ab10937157ff7b26) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '47f53913486b0bb26a6f1c9b3c8a57e9') in 0.063934 seconds
 Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 15
-========================================================================
-Received Import Request.
-  Time since last request: 0.000031 seconds.
-  path: Assets/Models/Hatch.fbx
-  artifactKey: Guid(519a1820a5f862b4ea9a98f444ca3236) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/Hatch.fbx using Guid(519a1820a5f862b4ea9a98f444ca3236) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2aad6eb26a62cf1c81c4a370041765f4') in 0.166775 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 46
-========================================================================
-Received Import Request.
-  Time since last request: 0.000038 seconds.
-  path: Assets/Models/Head.fbx
-  artifactKey: Guid(df358dab34f6adf46b7f717f2eb4c6e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/Head.fbx using Guid(df358dab34f6adf46b7f717f2eb4c6e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b407cb708c2bde34334a44776631bbf4') in 0.072774 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 12
-========================================================================
-Received Import Request.
-  Time since last request: 0.000020 seconds.
-  path: Assets/Models/Fence 2.fbx
-  artifactKey: Guid(f12b6571b5155c54cb94528615d2bef5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/Fence 2.fbx using Guid(f12b6571b5155c54cb94528615d2bef5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a3fcdb31a31bd47d4ec2f428c58e145d') in 0.808868 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 284
-========================================================================
-Received Import Request.
-  Time since last request: 0.000032 seconds.
-  path: Assets/Models/Bars.fbx
-  artifactKey: Guid(ea48a4fedc6ea834ca3eb50d51d87afd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/Bars.fbx using Guid(ea48a4fedc6ea834ca3eb50d51d87afd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1086e1f92ad4754c6361840703356bc3') in 0.032605 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 8
-========================================================================
-Received Import Request.
-  Time since last request: 0.000051 seconds.
-  path: Assets/Models/Decor.fbx
-  artifactKey: Guid(11dc0d7f6e3bdd84097ee71408ed2dc9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/Decor.fbx using Guid(11dc0d7f6e3bdd84097ee71408ed2dc9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c37a29ecb4dc2dc147e196fa2b1260f5') in 0.050932 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 16
-========================================================================
-Received Import Request.
-  Time since last request: 0.000027 seconds.
-  path: Assets/Models/For smithy.fbx
-  artifactKey: Guid(9174898778e66224182ed1aa12fda05e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/For smithy.fbx using Guid(9174898778e66224182ed1aa12fda05e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cd36f0c811e9f152727fd4df5980709e') in 0.119653 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 47
-========================================================================
-Received Import Request.
-  Time since last request: 0.000019 seconds.
-  path: Assets/Models/Arch 1.fbx
-  artifactKey: Guid(5632632ab1e7ac348abc9be5bd505696) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/Arch 1.fbx using Guid(5632632ab1e7ac348abc9be5bd505696) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b8802ddeaac5f32b72d576e13df0c61f') in 0.033875 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 8
-========================================================================
-Received Import Request.
-  Time since last request: 0.000020 seconds.
-  path: Assets/Models/Chain_03.fbx
-  artifactKey: Guid(4c49085dfd438b04ba577bad3508031e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/Chain_03.fbx using Guid(4c49085dfd438b04ba577bad3508031e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5a46b9c02f552e578f2818090156dc72') in 0.056775 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 15
-========================================================================
-Received Import Request.
-  Time since last request: 0.000083 seconds.
-  path: Assets/Models/Banner.fbx
-  artifactKey: Guid(90353266d8a946d43bb34113f8e0f8ec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/Banner.fbx using Guid(90353266d8a946d43bb34113f8e0f8ec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a12108ed1f988f27962bf2971c52d935') in 0.037896 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 9
-========================================================================
-Received Import Request.
-  Time since last request: 0.000342 seconds.
-  path: Assets/Models/Carpet.fbx
-  artifactKey: Guid(4cf6f8245df6e8943ab618fbb57e71fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/Carpet.fbx using Guid(4cf6f8245df6e8943ab618fbb57e71fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'eae6ddc0c868769e34aed787dc968ee2') in 0.043636 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 10
+Number of asset objects unloaded after import = 103
 Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
 TcpMessagingSession - receive error: operation aborted. errorcode: 995, details: ќпераци€ ввода/вывода была прервана из-за завершени€ потока команд или по запросу приложени€.
 AssetImportWorker is now disconnected from the server

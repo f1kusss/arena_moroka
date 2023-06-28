@@ -14,6 +14,7 @@ public class GunSwitch : MonoBehaviour
     public TextMeshProUGUI ammoText;
     public SingleGunController pistol;
     public AutoGunController rifle;
+    private bool canBeSwitched = true;
 
     public static int currentWeaponIndex = 0;
 
@@ -26,8 +27,10 @@ public class GunSwitch : MonoBehaviour
     private void Update()
     {
         int previousWeaponIndex = currentWeaponIndex;
-
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        
+        if (canBeSwitched)
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             currentWeaponIndex = 0;
             chooseWeapon.sprite = chooseMolot;
@@ -53,6 +56,8 @@ public class GunSwitch : MonoBehaviour
             // Обновление текста с количеством патронов после смены оружия
             SwitchWeapon(currentWeaponIndex);
         }
+        }
+        
     }
 
     private void SwitchWeapon(int weaponIndex)
@@ -65,5 +70,16 @@ public class GunSwitch : MonoBehaviour
 
         // ���������� ��������� ������
         weapons[weaponIndex].SetActive(true);
+    }
+
+    public void ChangeTrue()
+    {
+        canBeSwitched = true;
+        Debug.Log(canBeSwitched);
+    }
+    public void ChangeFalse()
+    {
+        canBeSwitched = false;
+        Debug.Log(canBeSwitched);
     }
 }

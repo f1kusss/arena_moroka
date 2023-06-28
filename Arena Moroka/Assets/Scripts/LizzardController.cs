@@ -9,6 +9,7 @@ public class LizzardController : MonoBehaviour
     public GameObject FloatingTextPrefab;
     private Transform target;
     private NavMeshAgent agent;
+    private Animator animator;
     public float attackRange;
     public float attackCooldown;
     public int damage;
@@ -22,6 +23,7 @@ public class LizzardController : MonoBehaviour
         target = FindObjectOfType<PlayerController>().gameObject.transform;
         playerContr = FindObjectOfType<PlayerController>();
         agent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -62,7 +64,7 @@ public class LizzardController : MonoBehaviour
 
     public void Attack()
     {
-        if (gameObject.name == "Lizzard wizard")
+        if (gameObject.tag == "Lizzard wizard")
         {
             Vector3 direction = target.position - transform.position;
             GameObject harch = Instantiate(harcha, transform.position, transform.rotation);
@@ -73,12 +75,29 @@ public class LizzardController : MonoBehaviour
         }
         else
         {
-            playerContr.TakeDamage(damage);
+            animator.SetTrigger("Attack");
+            animator.SetTrigger("Run");
         }
 
         canAttack = false;
         StartCoroutine(AttackDelayCoroutine());
     }
+
+    public void damagePlayer()
+    {
+        Ray ray = new Ray(transform.position, target.position - transform.position);
+        RaycastHit hit;
+        Debug.DrawLine(transform.position, target.position, Color.red);
+
+        if (Physics.Raycast(ray, out hit, attackRange))
+        {
+            playerContr.TakeDamage(damage);
+            Debug.Log("dealed damage");
+
+        }
+    }
+
+    
 
     private IEnumerator AttackDelayCoroutine()
     {
