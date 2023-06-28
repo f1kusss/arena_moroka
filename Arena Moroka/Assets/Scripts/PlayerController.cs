@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
             level += 1;
             exp = 0;
             maxExp *= 2;
-            StartCoroutine(startAnim());
+            StartCoroutine(startAnim(lvlLeft, lvlRight, lvlText));
 
         }
         // Если прошло достаточно времени, исцеляем игрока
@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
         cameraForward.Normalize();
         cameraRight.Normalize();
 
-        Vector3 movementDirection = (cameraForward * moveVertical + cameraRight * moveHorizontal).normalized;
+        Vector3 movementDirection = cameraForward * moveVertical + cameraRight * moveHorizontal;
 
         rb.velocity = new Vector3(movementDirection.x * moveSpeed, rb.velocity.y, movementDirection.z * moveSpeed);
 
@@ -108,17 +108,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    IEnumerator startAnim()
+    IEnumerator startAnim(RectTransform left, RectTransform right, TextMeshProUGUI text)
     {
-        yield return MoveObject();
+        yield return MoveObject(left, right, text);
         elapsedTime = 0f;
-        yield return ReturnObject();
+        yield return ReturnObject(left, right, text);
         elapsedTime = 0f;
     }
 
-    IEnumerator MoveObject()
+    IEnumerator MoveObject(RectTransform left, RectTransform right, TextMeshProUGUI text)
     {
-        Color startColor = lvlText.color;
+        Color startColor = text.color;
         Color targetColor = new Color(startColor.r, startColor.g, startColor.b, 1.0f);
         while (elapsedTime < unhidingTime)
         {
@@ -129,8 +129,8 @@ public class PlayerController : MonoBehaviour
             float ti = Mathf.Clamp01(elapsedTime / (unhidingTime-5.5f));
 
             // Интерполируем позицию объекта между начальной и конечной точками
-            lvlLeft.anchoredPosition = Vector2.Lerp(lvlLeft.anchoredPosition, endLeft, t);
-            lvlRight.anchoredPosition = Vector2.Lerp(lvlRight.anchoredPosition, endRight, t);
+            lvlLeft.anchoredPosition = Vector2.Lerp(left.anchoredPosition, endLeft, t);
+            lvlRight.anchoredPosition = Vector2.Lerp(right.anchoredPosition, endRight, t);
             lvlText.color = Color.Lerp(startColor, targetColor, ti);
 
             yield return null;
@@ -139,9 +139,9 @@ public class PlayerController : MonoBehaviour
         }
         
     }
-    IEnumerator ReturnObject()
+    IEnumerator ReturnObject(RectTransform left, RectTransform right, TextMeshProUGUI text)
     {
-        Color startColor = lvlText.color;
+        Color startColor = text.color;
         Color targetColor = new Color(startColor.r, startColor.g, startColor.b, 0f);
         while (elapsedTime < unhidingTime)
         {
@@ -152,8 +152,8 @@ public class PlayerController : MonoBehaviour
             float ti = Mathf.Clamp01(elapsedTime / (unhidingTime - 6.5f));
 
             // Интерполируем позицию объекта между начальной и конечной точками
-            lvlLeft.anchoredPosition = Vector2.Lerp(lvlLeft.anchoredPosition, endLeft2, t);
-            lvlRight.anchoredPosition = Vector2.Lerp(lvlRight.anchoredPosition, endRight2, t);
+            lvlLeft.anchoredPosition = Vector2.Lerp(left.anchoredPosition, endLeft2, t);
+            lvlRight.anchoredPosition = Vector2.Lerp(right.anchoredPosition, endRight2, t);
             lvlText.color = Color.Lerp(startColor, targetColor, ti);
 
 

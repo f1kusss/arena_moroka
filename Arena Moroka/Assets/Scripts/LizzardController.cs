@@ -5,20 +5,22 @@ using System.Collections;
 public class LizzardController : MonoBehaviour
 {
     [Header("Lizzard settings")]
-    public int health; // �������� �����
+    public int health;
     public GameObject FloatingTextPrefab;
-    public Transform target; // Ссылка на цель (игрока)
-    private NavMeshAgent agent; // Ссылка на компонент NavMeshAgent
+    private Transform target;
+    private NavMeshAgent agent;
     public float attackRange;
     public float attackCooldown;
     public int damage;
-    public float attackDelay = 2f; // Задержка атаки в секундах
-    private float attackTimer = 0f; // Таймер задержки атаки
-    private bool canAttack = true; // Флаг, указывающий, можно ли атаковать
-    public PlayerController playerContr;
+    private bool canAttack = true;
+    private PlayerController playerContr;
+    public GameObject harcha = null;
+    private Vector3 randomPoint;
 
     private void Start()
     {
+        target = FindObjectOfType<PlayerController>().gameObject.transform;
+        playerContr = FindObjectOfType<PlayerController>();
         agent = GetComponent<NavMeshAgent>();
     }
 
@@ -26,55 +28,72 @@ public class LizzardController : MonoBehaviour
     {
         if (target != null)
         {
-            agent.SetDestination(target.position);
+            
             Ray ray = new Ray(transform.position, target.position - transform.position);
             RaycastHit hit;
+            Debug.DrawLine(transform.position, target.position, Color.red);
             if (Physics.Raycast(ray, out hit, attackRange))
             {
                 if (hit.collider.gameObject.CompareTag("Player"))
                 {
-
                     if (canAttack)
                     {
                         Attack();
                         return;
                     }
+                    else if (canAttack == false && gameObject.name == "Lizzard wizard")
+                    {
+                        agent.SetDestination(randomPoint);
+                        if (agent.remainingDistance <= agent.stoppingDistance)
+                        {
+                            Vector3 direction = target.position - transform.position;
+                            Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0f, direction.z));
+                            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime*7);
+                        }
+                    }
                 }
+            }
+            else
+            {
+                agent.SetDestination(target.position);
             }
         }
     }
 
     public void Attack()
     {
-        playerContr.TakeDamage(damage);
+        if (gameObject.name == "Lizzard wizard")
+        {
+            Vector3 direction = target.position - transform.position;
+            GameObject harch = Instantiate(harcha, transform.position, transform.rotation);
+            harch.GetComponent<Rigidbody>().velocity = direction.normalized * 15f;
+            randomPoint.x = Random.Range(transform.position.x - agent.speed*1.4f, transform.position.x + agent.speed*1.4f);
+            randomPoint.z = Random.Range(transform.position.z - agent.speed*1.4f, transform.position.z + agent.speed*1.4f);
+            randomPoint.y = transform.position.y;
+        }
+        else
+        {
+            playerContr.TakeDamage(damage);
+        }
+
         canAttack = false;
-        attackTimer = attackDelay;
         StartCoroutine(AttackDelayCoroutine());
     }
 
     private IEnumerator AttackDelayCoroutine()
     {
-        while (attackTimer > 0f)
-        {
-            // Уменьшить таймер задержки атаки
-            attackTimer -= Time.deltaTime;
-
-            yield return null;
-        }
-
-        // Завершить задержку атаки, разрешить следующую атаку
+        yield return new WaitForSeconds(attackCooldown);
         canAttack = true;
     }
 
     public void TakeDamage(int damage)
     {
-        health -= damage; // �������� ���� �� ��������
-
+        health -= damage;
         ShowFloatingText(damage.ToString());
-        
+
         if (health <= 0)
         {
-            Die(); // ���� �������� ���������� �� ���� ��� ����, �������� ����� ������
+            Die();
         }
     }
 
@@ -83,13 +102,12 @@ public class LizzardController : MonoBehaviour
         if (FloatingTextPrefab)
         {
             var go = Instantiate(FloatingTextPrefab, transform.position, transform.rotation, transform);
-            go.GetComponentInChildren<TMPro.TextMeshPro>().text = text; 
+            go.GetComponentInChildren<TMPro.TextMeshPro>().text = text;
         }
     }
 
     private void Die()
     {
-        // ����� ����� �������� ���, ������������� ��� ������ �����
-        Destroy(gameObject); // ���������� ������ �����
+        Destroy(gameObject);
     }
 }
