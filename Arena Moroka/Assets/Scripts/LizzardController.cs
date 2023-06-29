@@ -64,7 +64,7 @@ public class LizzardController : MonoBehaviour
 
     public void Attack()
     {
-        if (gameObject.tag == "Lizzard wizard")
+        if (gameObject.tag == "Lizzard wizzard")
         {
             Vector3 direction = target.position - transform.position;
             GameObject harch = Instantiate(harcha, transform.position, transform.rotation);
@@ -105,10 +105,10 @@ public class LizzardController : MonoBehaviour
         canAttack = true;
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, RaycastHit hit)
     {
         health -= damage;
-        ShowFloatingText(damage.ToString());
+        ShowFloatingText(damage.ToString(), hit);
 
         if (health <= 0)
         {
@@ -116,11 +116,11 @@ public class LizzardController : MonoBehaviour
         }
     }
 
-    private void ShowFloatingText(string text)
+    private void ShowFloatingText(string text,RaycastHit hit)
     {
         if (FloatingTextPrefab)
         {
-            var go = Instantiate(FloatingTextPrefab, transform.position, transform.rotation, transform);
+            var go = Instantiate(FloatingTextPrefab, hit.point, Quaternion.LookRotation(hit.normal), transform);
             go.GetComponentInChildren<TMPro.TextMeshPro>().text = text;
         }
     }

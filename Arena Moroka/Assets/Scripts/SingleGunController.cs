@@ -100,13 +100,13 @@ public class SingleGunController : MonoBehaviour
                 Destroy(hitEffect, groundHitEffectDuration);
             }
 
-            if (hit.collider.tag == "Lizzard")
+            if (hit.collider.tag == "Lizzard" || hit.collider.tag == "Lizzard wizzard")
             {
                 LizzardController lizzard = hit.collider.GetComponent<LizzardController>(); // Получаем компонент врага из столкнувшегося объекта
 
                 if (lizzard != null)
                 {
-                    lizzard.TakeDamage(damage); // Наносим урон врагу
+                    lizzard.TakeDamage(damage, hit); // Наносим урон врагу
                 }
 
                 GameObject hitEffect = Instantiate(lizzardHitEffectPrefab, hit.point, Quaternion.LookRotation(hit.normal));
