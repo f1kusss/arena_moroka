@@ -6,7 +6,7 @@ using TMPro;
 public class PlayerController : MonoBehaviour
 {
     [Header("Player settings")]
-    public float moveSpeed;
+    public float moveSpeed = 10f;
     public float jumpForce;
     public float maxHealth;
     public float currentHealth;
@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     public float exp;
     public float maxExp;
     public int level;
+    public float heal = 0.25f;
+    public Image abilityIMG;
 
     private Rigidbody rb;
     private Camera mainCamera;
@@ -27,6 +29,14 @@ public class PlayerController : MonoBehaviour
     public float unhidingTime;
     private float elapsedTime = 0.0f;
     private Vector2 endLeft, endRight, endLeft2, endRight2;
+
+    [Header("Ability")]
+    public float abilityDuration = 5f; // Длительность способности
+    public float abilityCooldown = 15f; // Время перезарядки способности
+
+    private bool isAbilityActive = false; // Флаг, определяющий, активна ли способность
+    private float abilityTimer = 0f; // Таймер для отслеживания длительности способности
+    private float cooldownTimer = 0f; // Таймер для отслеживания перезарядки способности
 
 
     private void Start()
@@ -57,7 +67,7 @@ public class PlayerController : MonoBehaviour
         // Если прошло достаточно времени, исцеляем игрока
         if ((timeSinceLastDamage >= healInterval) && currentHealth < 100)
         {
-            currentHealth += 0.25f;
+            currentHealth += heal;
         }
 
         float moveHorizontal = Input.GetAxis("Horizontal");
@@ -82,9 +92,37 @@ public class PlayerController : MonoBehaviour
             isJumping = true;
         }
 
-        if (Input.GetButtonDown("Fire2"))
+
+        // Если способность активна, уменьшаем таймер длительности способности
+        if (isAbilityActive)
         {
-            TakeDamage(20);
+            abilityTimer -= Time.deltaTime;
+            if (abilityTimer <= 0f)
+            {
+                // Время способности истекло, деактивируем способность
+                isAbilityActive = false;
+
+                heal = 0.25f;
+                moveSpeed = 10f;
+            }
+        }
+        else
+        {
+            // Если способность неактивна, увеличиваем таймер перезарядки способности
+            cooldownTimer += Time.deltaTime;
+            abilityIMG.color = Color.gray;
+        }
+
+        // Проверяем, можно ли активировать способность
+        if (cooldownTimer >= abilityCooldown)
+        {
+            abilityIMG.color = Color.white;
+
+            // Здесь можно вставить код для активации способности, например, нажатие клавиши или триггер события
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                ActivateAbility();
+            }
         }
     }
 
@@ -106,6 +144,18 @@ public class PlayerController : MonoBehaviour
         {
             isJumping = false;
         }
+    }
+
+    private void ActivateAbility()
+    {
+        
+        isAbilityActive = true;
+        abilityTimer = abilityDuration;
+        cooldownTimer = 0f;
+
+        heal = 0.5f;
+        moveSpeed = 15f;
+        abilityIMG.color = Color.red;
     }
 
     IEnumerator startAnim(RectTransform left, RectTransform right, TextMeshProUGUI text)
