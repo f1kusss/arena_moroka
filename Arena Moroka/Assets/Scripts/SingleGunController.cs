@@ -32,6 +32,7 @@ public class SingleGunController : MonoBehaviour
     public int currentAmmo = 3;
 
     private AudioSource audioSource;
+    private Animator animator;
     private float lastFireTime;
     private bool isReloading;
     private Quaternion Rotation;
@@ -40,25 +41,26 @@ public class SingleGunController : MonoBehaviour
     private void Start()
     {
 
-        // Получение компонента AudioSource
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ AudioSource
         audioSource = GetComponent<AudioSource>();
-        currentAmmo = magazineSize; // Инициализация количества патронов
+        currentAmmo = magazineSize; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
         if (isReloading)
         {
-            return; // Если идет перезарядка, прерываем обновление
+            return; // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         }
 
-        // Обработка стрельбы при нажатии левой кнопки мыши
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
         if ((Input.GetButtonDown("Fire1")) && CanShoot())
         {
             Shoot();
             lastFireTime = Time.time;
 
-            // Уменьшаем количество патронов
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             currentAmmo--;
 
             ammo.text = currentAmmo.ToString();
@@ -69,29 +71,31 @@ public class SingleGunController : MonoBehaviour
             StartReload();
         }
 
-        // Выравнивание оружия с направлением камеры
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         AlignWeapon();
     }
 
     private bool CanShoot()
     {
-        // Проверка времени с момента последнего выстрела
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         return Time.time - lastFireTime >= fireDelay && currentAmmo > 0;
     }
 
     private void Shoot()
     {
-        // Создание луча (Ray) в направлении камеры
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ (Ray) пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
-        // Воспроизведение звука выстрела
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+        animator.SetTrigger("shoot");
+        
         audioSource.PlayOneShot(shootSound);
 
-        // Выпуск луча и проверка столкновения с объектами
+        // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         if (Physics.Raycast(ray, out hit, fireRange))
         {
-            // Обработка попадания
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             Debug.Log("Hitting an object: " + hit.collider.name);
 
             if (hit.collider.tag == "Ground")
@@ -102,11 +106,11 @@ public class SingleGunController : MonoBehaviour
 
             if (hit.collider.tag == "Lizzard" || hit.collider.tag == "Lizzard wizzard")
             {
-                LizzardController lizzard = hit.collider.GetComponent<LizzardController>(); // Получаем компонент врага из столкнувшегося объекта
+                LizzardController lizzard = hit.collider.GetComponent<LizzardController>(); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
                 if (lizzard != null)
                 {
-                    lizzard.TakeDamage(damage, hit); // Наносим урон врагу
+                    lizzard.TakeDamage(damage, hit); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
                 }
 
                 GameObject hitEffect = Instantiate(lizzardHitEffectPrefab, hit.point, Quaternion.LookRotation(hit.normal));
@@ -114,21 +118,21 @@ public class SingleGunController : MonoBehaviour
             }
 
 
-            // Продолжайте здесь свою логику обработки попадания
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         }
         else
         {
-            // Если луч не столкнулся с объектом, обрабатываем промах
-            Debug.Log("Промах");
+            // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+            Debug.Log("пїЅпїЅпїЅпїЅпїЅпїЅ");
         }
     }
 
     private void AlignWeapon()
     {
-        // Получение направления взгляда камеры
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         Vector3 cameraDirection = mainCamera.transform.forward;
 
-        // Выравнивание оружия с направлением камеры
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         transform.rotation = Quaternion.LookRotation(cameraDirection);
 
         transform.Rotate(-90, -180, 0);
@@ -138,21 +142,21 @@ public class SingleGunController : MonoBehaviour
     {
         if (!isReloading)
         {
-            // Если не идет перезарядка, запускаем ее
-            Debug.Log("Перезарядка...");
+            // пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ
+            Debug.Log("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ...");
 
             isReloading = true;
             currentAmmo = 0;
 
-            // Запускаем таймер перезарядки
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             Invoke("FinishReload", reloadTime);
         }
     }
 
     private void FinishReload()
     {
-        // Завершаем перезарядку
-        Debug.Log("Перезарядка завершена");
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+        Debug.Log("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 
         isReloading = false;
         currentAmmo = magazineSize;

@@ -33,11 +33,13 @@ public class AutoGunController : MonoBehaviour
     private AudioSource audioSource;
     private float lastFireTime;
     private bool isReloading;
+    private Animator animator;
 
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
         currentAmmo = magazineSize;
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -76,6 +78,8 @@ public class AutoGunController : MonoBehaviour
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
+        animator.SetTrigger("shoot");
+
         audioSource.PlayOneShot(shootSound);
 
         if (Physics.Raycast(ray, out hit, fireRange))
@@ -90,11 +94,11 @@ public class AutoGunController : MonoBehaviour
 
             if (hit.collider.tag == "Lizzard" || hit.collider.tag == "Lizzard wizzard")
             {
-                LizzardController lizzard = hit.collider.GetComponent<LizzardController>(); // Получаем компонент врага из столкнувшегося объекта
+                LizzardController lizzard = hit.collider.GetComponent<LizzardController>(); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
                 if (lizzard != null)
                 {
-                    lizzard.TakeDamage(damage, hit); // Наносим урон врагу
+                    lizzard.TakeDamage(damage, hit); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
                 }
 
                 GameObject hitEffect = Instantiate(lizzardHitEffectPrefab, hit.point, Quaternion.LookRotation(hit.normal));
@@ -103,7 +107,7 @@ public class AutoGunController : MonoBehaviour
         }
         else
         {
-            Debug.Log("Промах");
+            Debug.Log("пїЅпїЅпїЅпїЅпїЅпїЅ");
         }
     }
 
@@ -119,7 +123,7 @@ public class AutoGunController : MonoBehaviour
     {
         if (!isReloading && currentAmmo < magazineSize)
         {
-            Debug.Log("Перезарядка...");
+            Debug.Log("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ...");
 
             isReloading = true;
             currentAmmo = 0;
@@ -130,7 +134,7 @@ public class AutoGunController : MonoBehaviour
 
     private void FinishReload()
     {
-        Debug.Log("Перезарядка завершена");
+        Debug.Log("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 
         isReloading = false;
         currentAmmo = magazineSize;
