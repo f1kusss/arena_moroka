@@ -7,6 +7,8 @@ TagManager:
   - Ground
   - Lizzard
   - Lizzard wizzard
+  - Torgash
+  - ShopPanel
   layers:
   - Default
   - TransparentFX

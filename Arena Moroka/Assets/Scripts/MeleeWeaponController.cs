@@ -83,4 +83,9 @@ public class MeleeWeaponController : MonoBehaviour
 	{
         isAnimating = false;
     }
+    private void Awake()
+    {
+        GameManager gameManager = GameManager.Instance;
+        damage = gameManager.hammer;
+    }
 }

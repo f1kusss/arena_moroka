@@ -17,6 +17,7 @@ public class LizzardController : MonoBehaviour
     private PlayerController playerContr;
     public GameObject harcha = null;
     private Vector3 randomPoint;
+    
 
     private void Start()
     {
@@ -127,6 +128,9 @@ public class LizzardController : MonoBehaviour
 
     private void Die()
     {
+        PlayerController expControllerComponent = playerContr.GetComponent<PlayerController>();
+        expControllerComponent.exp += 10;
         Destroy(gameObject);
+
     }
 }

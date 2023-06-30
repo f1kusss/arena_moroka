@@ -137,4 +137,11 @@ public class AutoGunController : MonoBehaviour
 
         ammo.text = currentAmmo.ToString();
     }
+    private void Awake()
+    {
+        GameManager gameManager = GameManager.Instance;
+        damage = gameManager.auto;
+        magazineSize = gameManager.ammo;
+        currentAmmo = gameManager.ammo;
+    }
 }

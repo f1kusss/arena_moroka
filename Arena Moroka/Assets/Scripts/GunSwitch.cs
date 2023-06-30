@@ -20,6 +20,7 @@ public class GunSwitch : MonoBehaviour
 
     private void Start()
     {
+        SwitchWeapon(2);
         SwitchWeapon(currentWeaponIndex);
 
     }

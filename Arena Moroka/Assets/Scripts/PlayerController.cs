@@ -54,18 +54,20 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        GameManager gameManager = GameManager.Instance;
         timeSinceLastDamage += Time.deltaTime;
-        exp += 0.025f;
+        
         if (exp >= maxExp)
         {
+            gameManager.roubles += 1;
             level += 1;
             exp = 0;
-            maxExp *= 2;
+            maxExp += 10;
             StartCoroutine(startAnim(lvlLeft, lvlRight, lvlText));
 
         }
         // Если прошло достаточно времени, исцеляем игрока
-        if ((timeSinceLastDamage >= healInterval) && currentHealth < 100)
+        if ((timeSinceLastDamage >= healInterval) && currentHealth < gameManager.health)
         {
             currentHealth += heal;
         }
@@ -144,8 +146,25 @@ public class PlayerController : MonoBehaviour
         {
             isJumping = false;
         }
+        if (collision.gameObject.CompareTag("Torgash"))
+        {
+            GameManager gameManager = GameManager.Instance;
+            gameManager.nearTorgash = true;
+        }
     }
-
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Torgash"))
+        {
+            GameManager gameManager = GameManager.Instance;
+            gameManager.nearTorgash = false;
+        }
+    }
+    private void Awake()
+    {
+        GameManager gameManager = GameManager.Instance;
+        maxHealth = gameManager.health;
+    }
     private void ActivateAbility()
     {
         

@@ -159,4 +159,9 @@ public class SingleGunController : MonoBehaviour
 
         ammo.text = currentAmmo.ToString();
     }
+    private void Awake()
+    {
+        GameManager gameManager = GameManager.Instance;
+        damage = gameManager.pistol;
+    }
 }
